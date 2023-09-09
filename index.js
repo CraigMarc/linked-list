@@ -52,6 +52,35 @@
             return tmp;
           }
 
+          at(index) {
+            let tmp = this.head;
+            for (let i = 0; i < index; i++) {
+              tmp = tmp.next;
+              if (tmp == null) return "There is no item for this index";
+            }
+            return tmp;
+          }
+
+          pop() {
+            let cur = this.head;
+            let prev = null;
+            while (cur.next != null) {
+              prev = cur;
+              cur = cur.next;
+            }
+            prev.next = null;
+          }
+
+          contains(value) {
+            let tmp = this.head;
+            while (tmp != null) {
+              if (tmp.data === value) return true;
+              tmp = tmp.next;
+            }
+            return false;
+          }
+
+
     }
 //create node 
 let node1 = new ListNode(2)
@@ -84,3 +113,7 @@ console.log(list)
 
 console.log(list.size())
 console.log(list.tail())
+
+console.log(list.at(5))
+
+console.log(list.contains(2))
