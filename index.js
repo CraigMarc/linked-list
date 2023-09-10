@@ -80,6 +80,43 @@
             return false;
           }
 
+          find(value) {
+            let tmp = this.head;
+            let index = 0;
+            while (tmp != null) {
+              if (tmp.data === value) return index;
+              tmp = tmp.next;
+              index++;
+            }
+            return null;
+          }
+
+
+          toString() {
+            let tmp = this.head;
+            let stringList = "";
+            while (tmp != null) {
+              stringList += `(${tmp.data}) -> `;
+              tmp = tmp.next;
+            }
+            return (stringList += "null");
+          }
+
+          insertAt(value, index) {
+            if (this.head == null) this.prepend(value);
+            else {
+              let cur = this.head;
+              let prev = null;
+              for (let i = 0; i < index; i++) {
+                prev = cur;
+                cur = cur.next;
+                if (cur == null) break; // if index is bigger than end of list, add node at end of list
+              }
+              const tmp = new ListNode(value);
+              prev.next = tmp;
+              tmp.next = cur;
+            }
+          }
 
     }
 //create node 
@@ -117,3 +154,10 @@ console.log(list.tail())
 console.log(list.at(5))
 
 console.log(list.contains(2))
+
+console.log(list.find(5))
+
+console.log(list.toString())
+
+list.insertAt(1500, 1)
+console.log(list)
